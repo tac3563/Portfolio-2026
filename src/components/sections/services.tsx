@@ -16,7 +16,7 @@ export function Services() {
             <p className="copy-label text-taupe-300">{services.label}</p>
             <ServicesHeading />
           </div>
-          <p className="max-w-md copy-md text-pretty text-taupe-300 md:col-span-5 lg:col-span-4 lg:col-start-9">
+          <p className="max-w-intro copy-md text-pretty text-taupe-300 md:col-span-5 lg:col-span-4 lg:col-start-9">
             {services.intro}
           </p>
         </div>
