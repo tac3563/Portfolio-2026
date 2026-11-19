@@ -68,7 +68,7 @@ export function ServicesList() {
             </p>
             <div className="flex flex-col gap-6 md:col-span-6">
               <h3 className="heading-lg text-balance">{service.title}</h3>
-              <p className="max-w-xl copy-lg text-pretty text-taupe-300">{service.summary}</p>
+              <p className="max-w-summary copy-lg text-pretty text-taupe-300">{service.summary}</p>
               <ul className="flex flex-wrap gap-2">
                 {service.stack.map((tool) => (
                   <li
