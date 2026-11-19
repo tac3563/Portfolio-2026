@@ -1,20 +1,40 @@
 @import "tailwindcss";
 @import "../styles/typography/typography.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --muted: #5c5c5c;
-  --border: #e5e5e5;
+@theme {
+  --color-*: initial;
+
+  --color-paper-50: #f7f6f2;
+  --color-paper-100: #efeee9;
+  --color-paper-200: #e5e4dd;
+  --color-paper-300: #d1d1c7;
+  --color-paper-400: #bfbfb1;
+
+  --color-taupe-300: #a29e9a;
+  --color-taupe-400: #7e766c;
+  --color-taupe-500: #6b645c;
+  --color-taupe-600: #524d47;
+  --color-taupe-700: #393632;
+
+  --color-ink-800: #24221f;
+  --color-ink-900: #161513;
+  --color-ink-950: #0b0a09;
+
+  --color-olive-500: #8c8c73;
+  --color-olive-600: #6b6b55;
+
+  --color-ember-500: #d9542b;
+  --color-ember-600: #b8461f;
+
+  --color-error: #9e1f1f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --muted: #a3a3a3;
-    --border: #262626;
-  }
+:root {
+  --background: var(--color-paper-100);
+  --foreground: var(--color-ink-900);
+  --muted: var(--color-taupe-500);
+  --border: var(--color-paper-300);
+  --accent: var(--color-ember-600);
 }
 
 @theme inline {
@@ -22,6 +42,7 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-accent: var(--accent);
 
   --font-*: initial;
   --font-sans:
