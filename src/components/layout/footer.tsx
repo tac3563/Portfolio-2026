@@ -5,7 +5,7 @@ export async function Footer() {
 
   return (
     <footer className="border-t border-border py-10 copy-meta text-muted">
-      <div className="container-page flex flex-col justify-between gap-4 sm:flex-row">
+      <div className="flex container-page flex-col justify-between gap-4 sm:flex-row">
         <p>
           © {new Date().getFullYear()} {site.name}
         </p>

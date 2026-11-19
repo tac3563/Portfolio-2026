@@ -30,7 +30,7 @@ export function Header({ role, nav }: HeaderProps) {
     >
       <nav
         aria-label={header.navLabel}
-        className="container-page flex h-16 items-center justify-between gap-4"
+        className="flex h-16 container-page items-center justify-between gap-4"
       >
         <a href="#top" className="layout-header__role heading-3xs">
           {role}

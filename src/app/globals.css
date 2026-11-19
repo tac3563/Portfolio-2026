@@ -62,14 +62,11 @@
 }
 
 @utility container-page {
-  margin-inline: auto;
   width: 100%;
-  max-width: 80rem;
-  padding-inline: 1.5rem;
-
-  @media (width >= 40rem) {
-    padding-inline: 2.5rem;
-  }
+  padding-inline: max(
+    clamp(1rem, calc(1rem + 16 * (100vw - 23.4375rem) / 1065), 2rem),
+    calc(32 * 100vw / 1440)
+  );
 }
 
 @layer base {
