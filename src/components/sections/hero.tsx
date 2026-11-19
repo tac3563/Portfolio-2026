@@ -9,7 +9,10 @@ export function Hero() {
   return (
     <section id="top" aria-labelledby="hero-heading" className="sections-hero overflow-x-clip">
       <HeroStage>
-        <h1 id="hero-heading" className="flex justify-between heading-display uppercase">
+        <h1
+          id="hero-heading"
+          className="sections-hero__name flex justify-between heading-display uppercase"
+        >
           <span className="sr-only">{hero.name}</span>
           {words.map((word) => (
             <span key={word} aria-hidden="true" className="flex overflow-y-clip">
@@ -21,8 +24,8 @@ export function Hero() {
             </span>
           ))}
         </h1>
-        <div className="grid gap-12 md:grid-cols-12 md:items-end">
-          <div className="flex flex-col items-start gap-6 md:col-span-7 lg:col-span-5">
+        <div className="sections-hero__details grid gap-12 md:grid-cols-12 md:items-end">
+          <div className="flex flex-col items-start gap-6 md:col-span-7 lg:col-span-6 xl:col-span-5">
             <p className="sections-hero__reveal invisible flex items-center gap-3 copy-label text-muted">
               <svg
                 aria-hidden="true"
@@ -36,7 +39,7 @@ export function Hero() {
               </svg>
               {hero.location}
             </p>
-            <p className="sections-hero__reveal invisible max-w-md copy-lg text-pretty text-muted">
+            <p className="sections-hero__reveal invisible copy-lg text-pretty text-muted lg:max-w-intro">
               {hero.intro}
             </p>
             <div className="sections-hero__reveal invisible">

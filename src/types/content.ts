@@ -16,5 +16,21 @@ export type HeaderContent = {
   menu: string;
   openMenu: string;
   closeMenu: string;
-  currentSection: string;
+};
+
+export type Service = {
+  id: string;
+  title: string;
+  summary: string;
+  stack: string[];
+  file: string;
+  language: string;
+  code: string[];
+};
+
+export type ServicesContent = {
+  label: string;
+  heading: string;
+  intro: string;
+  services: Service[];
 };
