@@ -19,25 +19,27 @@ export function TypeHeadings() {
     <section
       id="headings"
       aria-labelledby="headings-heading"
-      className="sections-type-headings container-page py-32"
+      className="sections-type-headings bg-ink-900 py-32 text-paper-100"
     >
-      <h2 id="headings-heading" className="copy-label text-muted">
-        Headings — Space Grotesk
-      </h2>
-      <ul className="mt-12 grid gap-y-12">
-        {headingStyles.map((style) => (
-          <li key={style.className} className="grid gap-4 md:grid-cols-4">
-            <p className="copy-meta text-muted">
-              .{style.className}
-              <br />
-              {style.sizes}
-            </p>
-            <p className={`${style.className} md:col-span-3`}>
-              The quick brown fox jumps over the lazy dog
-            </p>
-          </li>
-        ))}
-      </ul>
+      <div className="container-page">
+        <h2 id="headings-heading" className="copy-label text-taupe-300">
+          Headings — Space Grotesk
+        </h2>
+        <ul className="mt-12 grid gap-y-12">
+          {headingStyles.map((style) => (
+            <li key={style.className} className="grid gap-4 md:grid-cols-4">
+              <p className="copy-meta text-taupe-300">
+                .{style.className}
+                <br />
+                {style.sizes}
+              </p>
+              <p className={`${style.className} md:col-span-3`}>
+                The quick brown fox jumps over the lazy dog
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
