@@ -1,12 +1,12 @@
-// Central place for site-wide content and metadata. Edit these first.
+import type { SiteConfig } from "@/types/site";
 
 const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
-export const site = {
-  name: "Your Name",
-  title: "Your Name — Developer & Designer",
-  description:
-    "Portfolio of Your Name, a developer and designer building fast, accessible interfaces.",
+export const site: SiteConfig = {
+  name: "Tom Cox",
+  title: "Tom Cox | Full Stack Developer",
+  role: "Full Stack Developer",
+  description: "Portfolio of Tom Cox, a full-stack developer building fast, accessible interfaces.",
   url: productionHost ? `https://${productionHost}` : "http://localhost:3000",
   nav: [
     { label: "About", href: "#about" },
@@ -17,4 +17,4 @@ export const site = {
     { label: "GitHub", href: "https://github.com/" },
     { label: "LinkedIn", href: "https://www.linkedin.com/" },
   ],
-} as const;
+};

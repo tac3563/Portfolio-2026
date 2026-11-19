@@ -1,0 +1,17 @@
+@utility copy-lg {
+  --type-min: 18;
+  --type-max: 24;
+  @apply type-fluid;
+  font-family: var(--font-inter);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@utility copy-md {
+  --type-min: 16;
+  --type-max: 20;
+  @apply type-fluid;
+  font-family: var(--font-inter);
+  font-weight: 400;
+  line-height: 1.6;
+}

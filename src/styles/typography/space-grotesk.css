@@ -1,0 +1,79 @@
+@utility heading-2xl {
+  --type-min: 48;
+  --type-max: 120;
+  @apply type-fluid;
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+@utility heading-xl {
+  --type-min: 40;
+  --type-max: 96;
+  @apply type-fluid;
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+@utility heading-lg {
+  --type-min: 34;
+  --type-max: 72;
+  @apply type-fluid;
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+@utility heading-md {
+  --type-min: 30;
+  --type-max: 56;
+  @apply type-fluid;
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+@utility heading-sm {
+  --type-min: 26;
+  --type-max: 44;
+  @apply type-fluid;
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@utility heading-xs {
+  --type-min: 22;
+  --type-max: 36;
+  @apply type-fluid;
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+@utility heading-2xs {
+  --type-min: 20;
+  --type-max: 32;
+  @apply type-fluid;
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+@utility heading-3xs {
+  --type-min: 16;
+  --type-max: 20;
+  @apply type-fluid;
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
