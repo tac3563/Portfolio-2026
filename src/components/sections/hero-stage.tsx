@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
+import { useHeroExit } from "@/hooks/use-hero-exit";
 import { useHeroIntro } from "@/hooks/use-hero-intro";
 import { usePointerWeight } from "@/hooks/use-pointer-weight";
 
@@ -11,6 +12,7 @@ type HeroStageProps = {
 export function HeroStage({ children }: HeroStageProps) {
   const root = useRef<HTMLDivElement>(null);
   useHeroIntro(root);
+  useHeroExit(root);
   usePointerWeight(root, ".sections-hero__letter");
 
   return (

@@ -5,5 +5,4 @@ export const header: HeaderContent = {
   menu: "Menu",
   openMenu: "Open menu",
   closeMenu: "Close menu",
-  currentSection: "Current section:",
 };

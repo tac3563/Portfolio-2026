@@ -12,12 +12,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock-upgrade";
 import type { HeaderFold } from "@/hooks/use-header-fold";
-import { findFragmentTarget } from "@/lib/find-fragment-target";
+import { scrollToFragment } from "@/lib/scroll-to-fragment";
 import { matchesMedia, mobileQuery, reducedMotionQuery } from "@/lib/media";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const linkGap = 24;
+const backdropInset = 20;
 
 type HeaderMenu = {
   isExpanded: boolean;
@@ -34,6 +35,7 @@ export function useHeaderMenu(
   const menuAnimation = useRef<gsap.core.Animation>(null);
   const isExpandedRef = useRef(false);
   const hasToggled = useRef(false);
+  const isClosing = useRef(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
   useGSAP(
@@ -59,15 +61,22 @@ export function useHeaderMenu(
       const items = gsap.utils.toArray<HTMLElement>(".layout-header__item");
 
       menuAnimation.current?.kill();
+      isClosing.current = false;
+
+      const toggle = root.current?.querySelector<HTMLElement>(".layout-header-toggle");
+      const toggleWidth = toggle?.offsetWidth ?? 0;
 
       if (!isExpanded) {
         gsap.set(".layout-header__links", { clearProps: "opacity,visibility" });
-        menuAnimation.current = gsap.to(items, {
-          y: 0,
-          autoAlpha: 0,
-          duration: isMobile ? 0 : duration / 2,
-          onComplete: () => releaseFold(duration),
-        });
+        menuAnimation.current = gsap
+          .timeline({ onComplete: () => releaseFold(duration) })
+          .to(items, { y: 0, autoAlpha: 0, duration: isMobile ? 0 : duration / 2 }, 0)
+          .to(
+            ".layout-header__backdrop",
+            { width: toggleWidth, duration: isMobile ? 0 : duration, ease: "power2.inOut" },
+            0,
+          )
+          .set(".layout-header__backdrop", { autoAlpha: 0 });
         return;
       }
 
@@ -88,16 +97,17 @@ export function useHeaderMenu(
         return;
       }
 
-      const toggle = root.current?.querySelector<HTMLElement>(".layout-header-toggle");
-      const shift = -((toggle?.offsetWidth ?? 0) + linkGap);
-      menuAnimation.current = gsap.to(items, {
-        x: shift,
-        autoAlpha: 1,
-        duration,
-        stagger: 0.05,
-        ease: "power2.out",
-        onComplete: focusFirstLink,
-      });
+      const list = root.current?.querySelector<HTMLElement>(".layout-header__links");
+      const shift = -(toggleWidth + linkGap);
+      menuAnimation.current = gsap
+        .timeline({ onComplete: focusFirstLink })
+        .fromTo(
+          ".layout-header__backdrop",
+          { width: toggleWidth, height: toggle?.offsetHeight ?? 0, autoAlpha: 1 },
+          { width: (list?.offsetWidth ?? 0) - shift + backdropInset, duration, ease: "power2.out" },
+          0,
+        )
+        .to(items, { x: shift, autoAlpha: 1, duration, stagger: 0.05, ease: "power2.out" }, 0);
     },
     { dependencies: [isExpanded], scope: root },
   );
@@ -111,7 +121,8 @@ export function useHeaderMenu(
   }, [isExpanded, root]);
 
   const closeMenu = (onClosed?: () => void) => {
-    if (!isExpandedRef.current) return;
+    // Hiding the links blurs the clicked one, which would restart the close and drop onClosed
+    if (!isExpandedRef.current || isClosing.current) return;
 
     if (!matchesMedia(mobileQuery) || matchesMedia(reducedMotionQuery)) {
       setIsExpanded(false);
@@ -119,10 +130,12 @@ export function useHeaderMenu(
       return;
     }
 
+    isClosing.current = true;
     menuAnimation.current?.kill();
     menuAnimation.current = gsap
       .timeline({
         onComplete: () => {
+          isClosing.current = false;
           setIsExpanded(false);
           onClosed?.();
         },
@@ -172,10 +185,7 @@ export function useHeaderMenu(
     event.preventDefault();
     closeMenu(() => {
       enableBodyScroll(list);
-      requestAnimationFrame(() => {
-        findFragmentTarget(href)?.scrollIntoView();
-        history.pushState(null, "", href);
-      });
+      requestAnimationFrame(() => scrollToFragment(href));
     });
   };
 

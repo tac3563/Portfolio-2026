@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { inter, jetbrainsMono, spaceGrotesk } from "@/lib/fonts";
 import { site } from "@/config/site";
+import { AnchorScroll } from "@/components/layout/anchor-scroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         {children}
+        <AnchorScroll />
       </body>
     </html>
   );
