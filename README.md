@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio 2026
 
-## Getting Started
+Single-page developer/design portfolio. Next.js 16 (App Router, Cache Components), React 19, TypeScript, Tailwind CSS 4, GSAP (ScrollTrigger + SplitText) and Lenis. Deployed on Vercel.
 
-First, run the development server:
+## Scripts
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Command             | Purpose                           |
+| ------------------- | --------------------------------- |
+| `npm run dev`       | Dev server on :3000               |
+| `npm run build`     | Production build                  |
+| `npm run start`     | Serve the production build        |
+| `npm run lint`      | ESLint                            |
+| `npm run typecheck` | `tsc --noEmit`                    |
+| `npm run format`    | Prettier (sorts Tailwind classes) |
+
+## Structure
+
+```
+src/
+  app/                 layout (metadata, fonts, skip link), page, robots, sitemap, globals.css (tokens)
+  lib/site.ts          name, copy, nav, socials, site URL — edit first
+  lib/gsap.ts          registers GSAP plugins; import gsap from here
+  components/
+    providers/         SmoothScroll (Lenis synced to GSAP ticker)
+    motion/            Reveal, SplitHeading — scroll animations
+    layout/            Header, Footer
+    sections/          Hero, About, Work, Contact
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Animation rules
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Sections are server components; only the `motion/` wrappers are client components.
+- Wrap GSAP work in `gsap.matchMedia()` with `FULL_MOTION` so it's skipped under `prefers-reduced-motion`. Lenis is disabled there too.
+- The hero is the LCP element, so its entrance is CSS (`animate-enter`), not GSAP. Don't hide above-the-fold content until JS runs.
+- Animate `transform` and `opacity` only.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Import the repo in Vercel; no config is needed. `site.url` picks up `VERCEL_PROJECT_PRODUCTION_URL` automatically, and that includes your custom domain once one is added.
