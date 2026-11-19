@@ -1,3 +1,11 @@
+@utility heading-display {
+  font-size: 22vw;
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+
 @utility heading-2xl {
   --type-min: 48;
   --type-max: 120;

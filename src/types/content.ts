@@ -1,7 +1,14 @@
+import type { Link } from "@/types/site";
+
 export type HeroContent = {
-  eyebrow: string;
-  heading: string;
+  name: string;
   intro: string;
+  location: string;
+  availability: string;
+  localTime: string;
+  timeZone: string;
+  timeZoneLabel: string;
+  contact: Link;
 };
 
 export type HeaderContent = {
