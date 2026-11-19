@@ -1,0 +1,13 @@
+@utility type-fluid {
+  font-size: max(
+    clamp(
+      calc(var(--type-min) * 0.0625rem),
+      calc(
+        var(--type-min) * 0.0625rem + (var(--type-max) - var(--type-min)) * (100vw - 23.4375rem) /
+          1065
+      ),
+      calc(var(--type-max) * 0.0625rem)
+    ),
+    calc(var(--type-max) * 100vw / 1440)
+  );
+}

@@ -1,0 +1,118 @@
+@utility wysiwyg {
+  .heading-2xl--inline {
+    @apply heading-2xl;
+  }
+
+  .heading-xl--inline {
+    @apply heading-xl;
+  }
+
+  .heading-lg--inline {
+    @apply heading-lg;
+  }
+
+  .heading-md--inline {
+    @apply heading-md;
+  }
+
+  .heading-sm--inline {
+    @apply heading-sm;
+  }
+
+  .heading-xs--inline {
+    @apply heading-xs;
+  }
+
+  .heading-2xs--inline {
+    @apply heading-2xs;
+  }
+
+  .copy-lg--inline {
+    @apply copy-lg;
+  }
+
+  .copy-md--inline {
+    @apply copy-md;
+  }
+
+  h2 {
+    @apply heading-md text-foreground;
+  }
+
+  h3 {
+    @apply heading-xs text-foreground;
+  }
+
+  p,
+  li {
+    @apply copy-md;
+  }
+
+  &:where(.wysiwyg--label-headings) h2 {
+    @apply flex items-center gap-5 copy-label text-muted after:flex-1 after:border-t after:border-border after:content-[''];
+  }
+
+  a {
+    @apply underline underline-offset-4;
+  }
+
+  ul,
+  ol {
+    @apply space-y-2.5 pl-7.5;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  blockquote {
+    @apply border-l-4 border-foreground pl-5;
+
+    p {
+      @apply heading-sm;
+    }
+  }
+
+  code {
+    @apply copy-meta;
+  }
+
+  hr {
+    @apply border-t border-border;
+  }
+
+  strong {
+    @apply font-semibold;
+  }
+
+  > * + * {
+    @apply mt-6 lg:mt-7.5;
+  }
+
+  p + p {
+    @apply mt-4 lg:mt-5;
+  }
+
+  h2 + *,
+  h3 + * {
+    @apply mt-5;
+  }
+
+  * + h2 {
+    @apply mt-15;
+  }
+
+  * + h3 {
+    @apply mt-10;
+  }
+
+  * + ul,
+  * + ol,
+  * + hr {
+    @apply mt-2.5;
+  }
+}
