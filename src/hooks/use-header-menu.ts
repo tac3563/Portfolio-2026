@@ -194,8 +194,9 @@ export function useHeaderMenu(
 
     event.preventDefault();
     closeMenu(() => {
-      enableBodyScroll(list);
+      // Lenis's overflow: clip must come off first, or iOS ignores the scroll lock restoring the page position
       resumeSmoothScroll();
+      enableBodyScroll(list);
       requestAnimationFrame(() => scrollToFragment(href));
     });
   };

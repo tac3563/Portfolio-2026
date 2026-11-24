@@ -53,6 +53,8 @@ export function scrollToFragment(href: string): boolean {
   history.pushState(null, "", href);
 
   if (lenis) {
+    // Its scroll limit can be stale right after a body scroll lock is released, which would clamp the target to the top
+    lenis.resize();
     lenis.scrollTo(position, {
       // Locked so trailing trackpad momentum can't cancel the scroll before it gets going
       lock: true,
