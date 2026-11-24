@@ -177,7 +177,8 @@ export function useHeaderMenu(
   };
 
   const handleBlur = (event: FocusEvent<HTMLElement>) => {
-    if (event.currentTarget.contains(event.relatedTarget)) return;
+    // iOS Safari doesn't focus tapped links, so a tap blurs with no relatedTarget. Outside taps are closed by the pointerdown listener instead
+    if (!event.relatedTarget || event.currentTarget.contains(event.relatedTarget)) return;
 
     closeMenu();
   };
