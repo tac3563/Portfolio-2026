@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { inter, jetbrainsMono, spaceGrotesk } from "@/lib/fonts";
 import { site } from "@/config/site";
 import { AnchorScroll } from "@/components/layout/anchor-scroll";
+import { SmoothScroll } from "@/components/layout/smooth-scroll";
+import { PageTransition } from "@/components/layout/page-transition";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -38,6 +42,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         {children}
         <AnchorScroll />
+        <SmoothScroll />
+        <Suspense>
+          <PageTransition />
+        </Suspense>
       </body>
     </html>
   );

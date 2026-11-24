@@ -9,6 +9,7 @@ export const site: SiteConfig = {
   description: "Portfolio of Tom Cox, a full-stack developer building fast, accessible interfaces.",
   url: productionHost ? `https://${productionHost}` : "http://localhost:3000",
   nav: [
+    { label: "Home", href: "#top" },
     { label: "Services", href: "#services" },
     { label: "About", href: "#about" },
     { label: "Work", href: "#work" },
