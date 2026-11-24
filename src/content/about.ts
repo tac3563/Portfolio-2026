@@ -4,7 +4,7 @@ export const about: AboutContent = {
   label: "About",
   heading: "Hi, I'm Tom",
   intro:
-    "A developer who loves building things and getting creative. Looking for a permanent remote role, and open to freelance projects.",
+    "A developer who loves building things and getting creative. Open to remote roles and freelance projects.",
   photoAlt: "Tom laughing in a back garden at night, swinging a sparkler",
   photoCaption: "Making sparks fly, on screen and off",
   bio: [
@@ -54,4 +54,7 @@ export const about: AboutContent = {
     { id: "lifting", label: "Lifting", fact: "Placeholder: the lift you're working on." },
     { id: "house", label: "First house", fact: "Placeholder: the DIY project you're proudest of." },
   ],
+  cvPrompt: "Prefer the full picture?",
+  cvLink: "Download my CV",
+  cvFileType: "(PDF)",
 };

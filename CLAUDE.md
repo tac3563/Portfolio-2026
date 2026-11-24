@@ -9,6 +9,7 @@ Next.js 16 (App Router, Cache Components), React 19, Tailwind v4, GSAP + ScrollT
 | `src/app/`                 | Routes, root layout, `globals.css` (theme tokens and utilities) |
 | `src/components/layout/`   | Site-wide chrome: header, footer                                |
 | `src/components/sections/` | Page sections, e.g. hero                                        |
+| `src/actions/`             | Server Functions (`'use server'`), e.g. the contact form        |
 | `src/hooks/`               | Custom hooks, one per file, named after what they achieve       |
 | `src/lib/`                 | Framework-agnostic helpers, e.g. media queries, fonts           |
 | `src/content/`             | User-facing copy, typed by `src/types/content.ts`               |

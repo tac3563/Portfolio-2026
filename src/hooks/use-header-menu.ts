@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useEffectEvent,
   useRef,
   useState,
   type FocusEvent,
@@ -8,7 +9,6 @@ import {
   type RefObject,
 } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock-upgrade";
 import type { HeaderFold } from "@/hooks/use-header-fold";
@@ -16,7 +16,7 @@ import { scrollToFragment } from "@/lib/scroll-to-fragment";
 import { pauseSmoothScroll, resumeSmoothScroll } from "@/lib/smooth-scroll";
 import { matchesMedia, mobileQuery, reducedMotionQuery } from "@/lib/media";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 const linkGap = 24;
 const backdropInset = 20;
@@ -38,19 +38,6 @@ export function useHeaderMenu(
   const hasToggled = useRef(false);
   const isClosing = useRef(false);
   const [isExpanded, setIsExpanded] = useState(false);
-
-  useGSAP(
-    () => {
-      ScrollTrigger.create({
-        start: 0,
-        end: "max",
-        onUpdate: () => {
-          if (isExpandedRef.current) setIsExpanded(false);
-        },
-      });
-    },
-    { scope: root },
-  );
 
   useGSAP(
     () => {
@@ -158,6 +145,19 @@ export function useHeaderMenu(
       })
       .to(".layout-header__links", { xPercent: 100, duration: 0.45, ease: "expo.in" }, 0.1);
   };
+
+  const closeOnOutsidePointer = useEffectEvent((event: PointerEvent) => {
+    if (root.current?.contains(event.target as Node)) return;
+
+    closeMenu();
+  });
+
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    document.addEventListener("pointerdown", closeOnOutsidePointer);
+    return () => document.removeEventListener("pointerdown", closeOnOutsidePointer);
+  }, [isExpanded]);
 
   const toggleMenu = () => {
     if (isExpanded) {

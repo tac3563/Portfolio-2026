@@ -148,4 +148,64 @@ export type AboutContent = {
   interestsHintPointer: string;
   interestsHintTouch: string;
   interests: AboutInterest[];
+  cvPrompt: string;
+  cvLink: string;
+  cvFileType: string;
+};
+
+export type ContactTopic = {
+  id: string;
+  label: string;
+};
+
+export type ContactErrorMessages = {
+  nameRequired: string;
+  nameTooLong: string;
+  emailRequired: string;
+  emailInvalid: string;
+  topicRequired: string;
+  messageTooShort: string;
+  messageTooLong: string;
+};
+
+export type ContactContent = {
+  label: string;
+  heading: string;
+  intro: string;
+  detailsLabel: string;
+  statusLabel: string;
+  status: string;
+  basedLabel: string;
+  based: string;
+  elsewhereLabel: string;
+  opensInNewTab: string;
+  cvLabel: string;
+  cvLink: string;
+  cvFileType: string;
+  formLabel: string;
+  greeting: string;
+  namePrompt: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  topicPrompt: string;
+  topicLegend: string;
+  topics: ContactTopic[];
+  emailPrompt: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  messagePrompt: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  signOff: string;
+  honeypotLabel: string;
+  submit: string;
+  sending: string;
+  errorSummaryHeading: string;
+  sendFailed: string;
+  errors: ContactErrorMessages;
+  sentStamp: string;
+  sentHeading: string;
+  sentBody: string;
+  sendAnother: string;
+  emailSubject: string;
 };

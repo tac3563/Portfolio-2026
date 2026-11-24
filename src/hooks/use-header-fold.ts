@@ -32,14 +32,17 @@ export function useHeaderFold(root: RefObject<HTMLElement | null>): HeaderFold {
     () => {
       const mm = gsap.matchMedia();
 
-      // Mobile always shows the menu button, so the links only fold away from tablet up
       mm.add(
         {
-          fullMotion: `${tabletUpQuery} and ${fullMotionQuery}`,
-          reduceMotion: `${tabletUpQuery} and ${reducedMotionQuery}`,
+          tabletUp: tabletUpQuery,
+          fullMotion: fullMotionQuery,
+          reduceMotion: reducedMotionQuery,
         },
         (context) => {
-          const { reduceMotion } = context.conditions as { reduceMotion: boolean };
+          const { tabletUp, reduceMotion } = context.conditions as {
+            tabletUp: boolean;
+            reduceMotion: boolean;
+          };
 
           fold.current = gsap
             .timeline({ paused: true, defaults: { ease: "none" } })
@@ -48,27 +51,32 @@ export function useHeaderFold(root: RefObject<HTMLElement | null>): HeaderFold {
               { yPercent: 0, autoAlpha: 1 },
               { yPercent: reduceMotion ? 0 : -100, autoAlpha: 0 },
               0,
-            )
-            .fromTo(
-              ".layout-header__item",
-              { x: 0, autoAlpha: 1 },
-              {
-                x: (_, item: HTMLElement) => {
-                  if (reduceMotion) return 0;
-                  const list = item.offsetParent as HTMLElement;
-                  return list.offsetWidth - item.offsetLeft - item.offsetWidth;
-                },
-                autoAlpha: 0,
-                stagger: { each: 0.08, from: "end" },
-              },
-              0,
-            )
-            .fromTo(
-              ".layout-header-toggle",
-              { autoAlpha: 0, scale: reduceMotion ? 1 : 0.6 },
-              { autoAlpha: 1, scale: 1 },
-              0.3,
             );
+
+          // Mobile always shows the menu button, so the links only fold away from tablet up
+          if (tabletUp) {
+            fold.current
+              .fromTo(
+                ".layout-header__item",
+                { x: 0, autoAlpha: 1 },
+                {
+                  x: (_, item: HTMLElement) => {
+                    if (reduceMotion) return 0;
+                    const list = item.offsetParent as HTMLElement;
+                    return list.offsetWidth - item.offsetLeft - item.offsetWidth;
+                  },
+                  autoAlpha: 0,
+                  stagger: { each: 0.08, from: "end" },
+                },
+                0,
+              )
+              .fromTo(
+                ".layout-header-toggle",
+                { autoAlpha: 0, scale: reduceMotion ? 1 : 0.6 },
+                { autoAlpha: 1, scale: 1 },
+                0.3,
+              );
+          }
 
           foldTrigger.current = ScrollTrigger.create({
             start: foldStart,
