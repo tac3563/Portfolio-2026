@@ -39,7 +39,7 @@ export function Hero() {
               </svg>
               {hero.location}
             </p>
-            <p className="sections-hero__reveal invisible copy-lg text-pretty text-muted lg:max-w-intro">
+            <p className="sections-hero__intro translate-y-6 copy-lg text-pretty text-muted lg:max-w-intro">
               {hero.intro}
             </p>
             <div className="sections-hero__reveal invisible">

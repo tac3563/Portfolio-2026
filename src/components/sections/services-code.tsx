@@ -74,7 +74,7 @@ export function ServicesCode({ service, position }: ServicesCodeProps) {
               key={`${service.id}-${index}`}
               className="sections-services-code__line flex gap-5 whitespace-pre"
             >
-              <span className="w-5 shrink-0 text-right text-taupe-600">{index + 1}</span>
+              <span className="w-5 shrink-0 text-right text-taupe-400">{index + 1}</span>
               <span className={isComment(line) ? "text-olive-500" : "text-paper-200"}>
                 {line}
                 {index === service.code.length - 1 && (

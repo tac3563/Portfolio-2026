@@ -14,6 +14,7 @@ export function useHeroIntro(root: RefObject<HTMLElement | null>): void {
         const { reduceMotion } = context.conditions as { reduceMotion: boolean };
 
         if (reduceMotion) {
+          gsap.set(".sections-hero__intro", { y: 0 });
           gsap.to([".sections-hero__letter", ".sections-hero__reveal"], {
             autoAlpha: 1,
             duration: 0.4,
@@ -34,7 +35,8 @@ export function useHeroIntro(root: RefObject<HTMLElement | null>): void {
             { y: 24, autoAlpha: 0 },
             { y: 0, autoAlpha: 1, duration: 1.2, stagger: 0.08 },
             0.6,
-          );
+          )
+          .to(".sections-hero__intro", { y: 0, duration: 1.2 }, 0.68);
       });
     },
     { scope: root },

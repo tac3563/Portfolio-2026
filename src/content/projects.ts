@@ -20,7 +20,7 @@ export const projects: ProjectsContent = {
       tags: ["Laravel", "Vue", "Tailwind CSS"],
       video: {
         mp4: "/projects/project-one/scroll.mp4",
-        poster: "/projects/project-one/poster.jpg",
+        poster: "/projects/project-one/poster.webp",
       },
       links: [{ label: "Visit site", href: "https://example.com" }],
       caseStudy: {
