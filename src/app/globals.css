@@ -57,14 +57,6 @@
   --font-jetbrains-mono: var(--font-face-jetbrains-mono), var(--font-mono);
 }
 
-@custom-variant menu-overlay {
-  @media (width < 48rem) {
-    &:where([data-expanded], [data-expanded] *) {
-      @slot;
-    }
-  }
-}
-
 @utility text-roll {
   text-shadow: 0 1lh currentColor;
 }

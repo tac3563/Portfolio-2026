@@ -2,7 +2,7 @@ import { useRef, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { fullMotionQuery, reducedMotionQuery } from "@/lib/media";
+import { fullMotionQuery, reducedMotionQuery, tabletUpQuery } from "@/lib/media";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -32,50 +32,62 @@ export function useHeaderFold(root: RefObject<HTMLElement | null>): HeaderFold {
     () => {
       const mm = gsap.matchMedia();
 
-      mm.add({ fullMotion: fullMotionQuery, reduceMotion: reducedMotionQuery }, (context) => {
-        const { reduceMotion } = context.conditions as { reduceMotion: boolean };
+      // Mobile always shows the menu button, so the links only fold away from tablet up
+      mm.add(
+        {
+          fullMotion: `${tabletUpQuery} and ${fullMotionQuery}`,
+          reduceMotion: `${tabletUpQuery} and ${reducedMotionQuery}`,
+        },
+        (context) => {
+          const { reduceMotion } = context.conditions as { reduceMotion: boolean };
 
-        fold.current = gsap
-          .timeline({ paused: true, defaults: { ease: "none" } })
-          .fromTo(
-            ".layout-header__role",
-            { yPercent: 0, autoAlpha: 1 },
-            { yPercent: reduceMotion ? 0 : -100, autoAlpha: 0 },
-            0,
-          )
-          .fromTo(
-            ".layout-header__item",
-            { x: 0, autoAlpha: 1 },
-            {
-              x: (_, item: HTMLElement) => {
-                if (reduceMotion) return 0;
-                const list = item.offsetParent as HTMLElement;
-                return list.offsetWidth - item.offsetLeft - item.offsetWidth;
+          fold.current = gsap
+            .timeline({ paused: true, defaults: { ease: "none" } })
+            .fromTo(
+              ".layout-header__role",
+              { yPercent: 0, autoAlpha: 1 },
+              { yPercent: reduceMotion ? 0 : -100, autoAlpha: 0 },
+              0,
+            )
+            .fromTo(
+              ".layout-header__item",
+              { x: 0, autoAlpha: 1 },
+              {
+                x: (_, item: HTMLElement) => {
+                  if (reduceMotion) return 0;
+                  const list = item.offsetParent as HTMLElement;
+                  return list.offsetWidth - item.offsetLeft - item.offsetWidth;
+                },
+                autoAlpha: 0,
+                stagger: { each: 0.08, from: "end" },
               },
-              autoAlpha: 0,
-              stagger: { each: 0.08, from: "end" },
+              0,
+            )
+            .fromTo(
+              ".layout-header-toggle",
+              { autoAlpha: 0, scale: reduceMotion ? 1 : 0.6 },
+              { autoAlpha: 1, scale: 1 },
+              0.3,
+            );
+
+          foldTrigger.current = ScrollTrigger.create({
+            start: foldStart,
+            end: "max",
+            onToggle: () => syncFold(reduceMotion ? reducedFoldDuration : foldDuration),
+            onRefresh: () => {
+              fold.current?.invalidate();
+              syncFold(0);
             },
-            0,
-          )
-          .fromTo(
-            ".layout-header-toggle",
-            { autoAlpha: 0, scale: reduceMotion ? 1 : 0.6 },
-            { autoAlpha: 1, scale: 1 },
-            0.3,
-          );
+          });
 
-        foldTrigger.current = ScrollTrigger.create({
-          start: foldStart,
-          end: "max",
-          onToggle: () => syncFold(reduceMotion ? reducedFoldDuration : foldDuration),
-          onRefresh: () => {
-            fold.current?.invalidate();
-            syncFold(0);
-          },
-        });
+          syncFold(0);
 
-        syncFold(0);
-      });
+          return () => {
+            fold.current = null;
+            foldTrigger.current = null;
+          };
+        },
+      );
     },
     { scope: root },
   );

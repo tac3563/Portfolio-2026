@@ -17,8 +17,10 @@ function moveFocusTo(target: HTMLElement): void {
   target.focus({ preventScroll: true });
 }
 
-function readScrollPadding(): number {
-  return Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+function findScrollPosition(href: string, target: HTMLElement): number {
+  if (href === "#top") return 0;
+
+  return target.getBoundingClientRect().top + window.scrollY;
 }
 
 export function jumpToFragment(href: string): void {
@@ -26,20 +28,23 @@ export function jumpToFragment(href: string): void {
   if (!target) return;
 
   const lenis = getSmoothScroll();
+  lenis?.resize();
+  const position = findScrollPosition(href, target);
+
   if (lenis) {
-    lenis.resize();
-    lenis.scrollTo(target, { offset: readScrollPadding(), immediate: true, force: true });
+    lenis.scrollTo(position, { immediate: true, force: true });
     return;
   }
 
-  window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY);
+  window.scrollTo(0, position);
 }
 
 export function scrollToFragment(href: string): boolean {
   const target = findFragmentTarget(href);
   if (!target) return false;
 
-  const distance = Math.abs(target.getBoundingClientRect().top);
+  const position = findScrollPosition(href, target);
+  const distance = Math.abs(position - window.scrollY);
   const duration = matchesMedia(reducedMotionQuery)
     ? 0
     : gsap.utils.clamp(shortestDuration, longestDuration, distance / pixelsPerSecond);
@@ -48,8 +53,9 @@ export function scrollToFragment(href: string): boolean {
   history.pushState(null, "", href);
 
   if (lenis) {
-    lenis.scrollTo(target, {
-      offset: readScrollPadding(),
+    lenis.scrollTo(position, {
+      // Locked so trailing trackpad momentum can't cancel the scroll before it gets going
+      lock: true,
       duration,
       easing: ease,
       onComplete: () => moveFocusTo(target),
@@ -59,7 +65,7 @@ export function scrollToFragment(href: string): boolean {
 
   gsap.killTweensOf(window);
   gsap.to(window, {
-    scrollTo: { y: target, autoKill: true },
+    scrollTo: { y: position, autoKill: true },
     duration,
     ease: "expo.inOut",
     onComplete: () => moveFocusTo(target),

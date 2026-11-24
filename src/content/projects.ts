@@ -59,6 +59,10 @@ export const projects: ProjectsContent = {
       role: "Design & development",
       year: "2026",
       tags: ["Next.js", "TypeScript", "GSAP"],
+      video: {
+        mp4: "/projects/project-two/scroll.mp4",
+        poster: "/projects/project-two/poster.webp",
+      },
       links: [{ label: "Visit site", href: "https://example.com" }],
       caseStudy: {
         brief: ["Placeholder: why you built this."],
@@ -86,6 +90,10 @@ export const projects: ProjectsContent = {
       role: "Front-end developer",
       year: "2026",
       tags: ["WordPress", "ACF", "GSAP"],
+      video: {
+        mp4: "/projects/project-three/scroll.mp4",
+        poster: "/projects/project-three/poster.webp",
+      },
     },
   ],
 };
