@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { header } from "@/content/header";
-import { HeaderLink } from "@/components/layout/header-link";
+import { RollLink } from "@/components/layout/roll-link";
 import { HeaderToggle } from "@/components/layout/header-toggle";
 import { useHeaderFold } from "@/hooks/use-header-fold";
 import { useHeaderMenu } from "@/hooks/use-header-menu";
@@ -28,9 +28,7 @@ export function Header({ role, nav }: HeaderProps) {
     >
       <nav aria-label={header.navLabel}>
         <div className="fixed inset-x-0 top-0 z-40 flex h-16 container-page items-center justify-between gap-4 text-paper-100 mix-blend-difference group-data-expanded/header:mix-blend-normal">
-          <a href="#top" className="layout-header__role heading-3xs">
-            {role}
-          </a>
+          <p className="layout-header__role heading-3xs">{role}</p>
           <div className="relative">
             <span
               aria-hidden="true"
@@ -42,8 +40,9 @@ export function Header({ role, nav }: HeaderProps) {
             >
               {nav.map((item) => (
                 <li key={item.href} className="layout-header__item">
-                  <HeaderLink
-                    link={item}
+                  <RollLink
+                    href={item.href}
+                    label={item.label}
                     onClick={(event) => menu.handleLinkClick(event, item.href)}
                   />
                 </li>

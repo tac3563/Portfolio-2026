@@ -13,6 +13,7 @@ import { useGSAP } from "@gsap/react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock-upgrade";
 import type { HeaderFold } from "@/hooks/use-header-fold";
 import { scrollToFragment } from "@/lib/scroll-to-fragment";
+import { pauseSmoothScroll, resumeSmoothScroll } from "@/lib/smooth-scroll";
 import { matchesMedia, mobileQuery, reducedMotionQuery } from "@/lib/media";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -117,11 +118,14 @@ export function useHeaderMenu(
     if (!isExpanded || !list || !matchesMedia(mobileQuery)) return;
 
     disableBodyScroll(list);
-    return () => enableBodyScroll(list);
+    pauseSmoothScroll();
+    return () => {
+      enableBodyScroll(list);
+      resumeSmoothScroll();
+    };
   }, [isExpanded, root]);
 
   const closeMenu = (onClosed?: () => void) => {
-    // Hiding the links blurs the clicked one, which would restart the close and drop onClosed
     if (!isExpandedRef.current || isClosing.current) return;
 
     if (!matchesMedia(mobileQuery) || matchesMedia(reducedMotionQuery)) {
@@ -185,6 +189,7 @@ export function useHeaderMenu(
     event.preventDefault();
     closeMenu(() => {
       enableBodyScroll(list);
+      resumeSmoothScroll();
       requestAnimationFrame(() => scrollToFragment(href));
     });
   };

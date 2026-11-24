@@ -4,7 +4,7 @@ export const services: ServicesContent = {
   label: "Services",
   heading: "What I do",
   intro:
-    "Five years in PHP agencies taught me to ship: pixel-perfect builds from design, CMS sites editors enjoy using, and full-stack products that stay fast as they grow.",
+    "Five years in PHP agencies taught me to ship: pixel-perfect builds, CMS sites editors enjoy and fast full-stack products.",
   services: [
     {
       id: "full-stack",
@@ -58,10 +58,10 @@ export const services: ServicesContent = {
     },
     {
       id: "cms",
-      title: "CMS & WordPress",
+      title: "WordPress & Statamic",
       summary:
-        "Custom WordPress themes built with Laravel-style structure and ACF, so editors get flexible, hard-to-break page building and developers get typed, tidy code.",
-      stack: ["WordPress", "Statamic"],
+        "Custom WordPress themes built with Laravel-style structure and ACF, and Statamic sites built on Laravel itself. Editors get flexible, hard-to-break page building; developers get typed, tidy code.",
+      stack: ["WordPress", "ACF", "Statamic", "Laravel"],
       file: "components/home/hero.php",
       language: "PHP",
       code: [
