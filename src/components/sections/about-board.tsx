@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { about } from "@/content/about";
 import { finePointerQuery, fullMotionQuery, reducedMotionQuery } from "@/lib/media";
+import { useHeightReveal } from "@/hooks/use-height-reveal";
 
 gsap.registerPlugin(useGSAP, Draggable, InertiaPlugin, ScrollTrigger);
 
@@ -25,8 +26,15 @@ const stickerStyles = [
 
 export function AboutBoard() {
   const root = useRef<HTMLDivElement>(null);
+  const factPanel = useRef<HTMLDivElement>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = about.interests.find((interest) => interest.id === selectedId);
+  const rememberFactHeight = useHeightReveal(factPanel, selectedId);
+
+  function selectInterest(id: string) {
+    rememberFactHeight();
+    setSelectedId(id);
+  }
 
   useGSAP(
     () => {
@@ -68,36 +76,40 @@ export function AboutBoard() {
   );
 
   return (
-    <div ref={root} className="sections-about-board flex flex-col gap-8">
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <h3 className="heading-sm">{about.interestsHeading}</h3>
-        <p className="copy-meta text-taupe-300">
-          <span className="pointer-coarse:hidden">{about.interestsHintPointer}</span>
-          <span className="hidden pointer-coarse:inline">{about.interestsHintTouch}</span>
+    <div ref={root} className="sections-about-board">
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <h3 className="heading-sm">{about.interestsHeading}</h3>
+          <p className="copy-meta text-taupe-300">
+            <span className="pointer-coarse:hidden">{about.interestsHintPointer}</span>
+            <span className="hidden pointer-coarse:inline">{about.interestsHintTouch}</span>
+          </p>
+        </div>
+        <ul className="sections-about-board__stickers flex min-h-80 flex-wrap content-center items-center justify-center gap-x-4 gap-y-6 rounded-3xl border border-dashed border-ink-800 p-8 md:p-12">
+          {about.interests.map((interest, index) => (
+            <li key={interest.id}>
+              <button
+                type="button"
+                aria-pressed={interest.id === selectedId}
+                aria-label={interest.label}
+                onClick={() => selectInterest(interest.id)}
+                className={`sections-about-board__sticker cursor-grab rounded-full px-6 py-3 heading-2xs shadow-lg select-none active:cursor-grabbing aria-pressed:outline-2 aria-pressed:outline-offset-4 aria-pressed:outline-ember-500 ${stickerStyles[index % stickerStyles.length]}`}
+              >
+                {interest.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div ref={factPanel} className="h-0 overflow-hidden">
+        <p aria-live="polite" className="max-w-summary pt-8 copy-lg text-pretty text-paper-100">
+          {selected && (
+            <>
+              <span className="text-ember-500">{selected.label}.</span> {selected.fact}
+            </>
+          )}
         </p>
       </div>
-      <ul className="sections-about-board__stickers flex min-h-80 flex-wrap content-center items-center justify-center gap-x-4 gap-y-6 rounded-3xl border border-dashed border-ink-800 p-8 md:p-12">
-        {about.interests.map((interest, index) => (
-          <li key={interest.id}>
-            <button
-              type="button"
-              aria-pressed={interest.id === selectedId}
-              aria-label={interest.label}
-              onClick={() => setSelectedId(interest.id)}
-              className={`sections-about-board__sticker cursor-grab rounded-full px-6 py-3 heading-2xs shadow-lg select-none active:cursor-grabbing aria-pressed:outline-2 aria-pressed:outline-offset-4 aria-pressed:outline-ember-500 ${stickerStyles[index % stickerStyles.length]}`}
-            >
-              {interest.label}
-            </button>
-          </li>
-        ))}
-      </ul>
-      <p aria-live="polite" className="min-h-14 max-w-summary copy-lg text-pretty text-paper-100">
-        {selected && (
-          <>
-            <span className="text-ember-500">{selected.label}.</span> {selected.fact}
-          </>
-        )}
-      </p>
     </div>
   );
 }

@@ -11,4 +11,5 @@ export type SiteConfig = {
   url: string;
   nav: Link[];
   socials: Link[];
+  cvHref: string;
 };

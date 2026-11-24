@@ -1,4 +1,6 @@
 import { about } from "@/content/about";
+import { site } from "@/config/site";
+import { RollLink } from "@/components/layout/roll-link";
 import { AboutBoard } from "@/components/sections/about-board";
 import { AboutHeading } from "@/components/sections/about-heading";
 import { AboutPhoto } from "@/components/sections/about-photo";
@@ -29,6 +31,17 @@ export function About() {
                   {paragraph}
                 </p>
               ))}
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <p className="copy-lg text-taupe-300">{about.cvPrompt}</p>
+                <RollLink
+                  href={site.cvHref}
+                  label={about.cvLink}
+                  download
+                  className="w-fit heading-3xs text-ember-500 hover:text-paper-100 focus-visible:text-paper-100"
+                >
+                  <span className="sr-only"> {about.cvFileType}</span>
+                </RollLink>
+              </div>
             </div>
             <AboutStats />
           </div>

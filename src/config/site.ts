@@ -19,4 +19,5 @@ export const site: SiteConfig = {
     { label: "GitHub", href: "https://github.com/tac3563" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/tom-cox-a2b357215/" },
   ],
+  cvHref: "/tom-cox-cv.pdf",
 };
