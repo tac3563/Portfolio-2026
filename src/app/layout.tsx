@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { inter, jetbrainsMono, spaceGrotesk } from "@/lib/fonts";
 import { site } from "@/config/site";
 import { AnchorScroll } from "@/components/layout/anchor-scroll";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Suspense>
           <PageTransition />
         </Suspense>
+        <SpeedInsights />
       </body>
     </html>
   );
