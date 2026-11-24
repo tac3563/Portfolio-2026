@@ -68,7 +68,7 @@ export function useHeaderMenu(
       const toggleWidth = toggle?.offsetWidth ?? 0;
 
       if (!isExpanded) {
-        gsap.set(".layout-header__links", { clearProps: "opacity,visibility" });
+        gsap.set(".layout-header__links", { clearProps: "transform,opacity,visibility" });
         menuAnimation.current = gsap
           .timeline({ onComplete: () => releaseFold(duration) })
           .to(items, { y: 0, autoAlpha: 0, duration: isMobile ? 0 : duration / 2 }, 0)
@@ -88,12 +88,17 @@ export function useHeaderMenu(
       if (isMobile) {
         menuAnimation.current = gsap
           .timeline({ onComplete: focusFirstLink })
-          .fromTo(".layout-header__links", { autoAlpha: 0 }, { autoAlpha: 1, duration }, 0)
+          .fromTo(
+            ".layout-header__links",
+            { xPercent: 100, autoAlpha: 1 },
+            { xPercent: 0, duration: duration && 0.6, ease: "expo.out" },
+            0,
+          )
           .fromTo(
             items,
-            { x: 0, y: 24, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration, stagger: 0.05, ease: "power2.out" },
-            0,
+            { x: 48, y: 0, autoAlpha: 0 },
+            { x: 0, autoAlpha: 1, duration, stagger: 0.05, ease: "power3.out" },
+            duration && 0.15,
           );
         return;
       }
@@ -145,13 +150,13 @@ export function useHeaderMenu(
         },
       })
       .to(".layout-header__item", {
-        y: -16,
+        x: 32,
         autoAlpha: 0,
-        duration: 0.3,
-        stagger: 0.04,
+        duration: 0.25,
+        stagger: 0.03,
         ease: "power2.in",
       })
-      .to(".layout-header__links", { autoAlpha: 0, duration: 0.35, ease: "power2.inOut" }, 0.15);
+      .to(".layout-header__links", { xPercent: 100, duration: 0.45, ease: "expo.in" }, 0.1);
   };
 
   const toggleMenu = () => {

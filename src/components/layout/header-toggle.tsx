@@ -39,7 +39,7 @@ export function HeaderToggle({ isExpanded, onToggle }: HeaderToggleProps) {
   return (
     <div
       ref={root}
-      className="pointer-events-none fixed inset-x-0 top-0 z-40 flex h-16 container-page items-center justify-end"
+      className="pointer-events-none fixed inset-x-0 top-0 z-40 flex container-page items-start justify-end pt-3.75"
     >
       <button
         type="button"
@@ -47,9 +47,9 @@ export function HeaderToggle({ isExpanded, onToggle }: HeaderToggleProps) {
         aria-expanded={isExpanded}
         aria-controls="layout-header-links"
         onClick={onToggle}
-        className="layout-header-toggle pointer-events-auto invisible flex items-center gap-3 rounded-full border border-paper-100/20 bg-ink-900 py-2 pr-4 pl-5 whitespace-nowrap text-paper-100 aria-expanded:border-transparent"
+        className="layout-header-toggle pointer-events-auto flex items-center justify-center gap-3 rounded-full border border-paper-100/20 bg-ink-900 whitespace-nowrap text-paper-100 aria-expanded:border-transparent max-md:size-11 md:invisible md:py-2 md:pr-4 md:pl-5"
       >
-        <span className="heading-3xs">{header.menu}</span>
+        <span className="heading-3xs max-md:hidden">{header.menu}</span>
         <span aria-hidden="true" className="flex w-4 flex-col gap-1">
           <span className="layout-header-toggle__line--top h-px w-full bg-current" />
           <span className="layout-header-toggle__line--bottom h-px w-full bg-current" />

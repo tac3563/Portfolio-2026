@@ -27,8 +27,10 @@ export function Header({ role, nav }: HeaderProps) {
       className="layout-header group/header"
     >
       <nav aria-label={header.navLabel}>
-        <div className="fixed inset-x-0 top-0 z-40 flex h-16 container-page items-center justify-between gap-4 text-paper-100 mix-blend-difference group-data-expanded/header:mix-blend-normal">
-          <p className="layout-header__role heading-3xs">{role}</p>
+        <div className="fixed inset-x-0 top-0 z-40 flex container-page items-start justify-between gap-4 pt-3.75 text-paper-100 mix-blend-difference group-data-expanded/header:mix-blend-normal">
+          <p className="layout-header__role border-y border-transparent py-3 heading-3xs md:py-2">
+            {role}
+          </p>
           <div className="relative">
             <span
               aria-hidden="true"
@@ -36,7 +38,7 @@ export function Header({ role, nav }: HeaderProps) {
             />
             <ul
               id="layout-header-links"
-              className="layout-header__links relative flex gap-4 heading-3xs md:gap-6 menu-overlay:fixed menu-overlay:inset-0 menu-overlay:flex-col menu-overlay:justify-center menu-overlay:gap-2 menu-overlay:bg-ink-900 menu-overlay:px-6 menu-overlay:heading-lg menu-overlay:uppercase"
+              className="layout-header__links relative flex gap-4 border-y border-transparent py-2 heading-3xs max-md:invisible max-md:fixed max-md:inset-0 max-md:flex-col max-md:justify-center max-md:gap-2 max-md:bg-ink-900 max-md:px-6 max-md:heading-lg max-md:uppercase md:gap-6"
             >
               {nav.map((item) => (
                 <li key={item.href} className="layout-header__item">

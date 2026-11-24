@@ -116,3 +116,36 @@ export type CaseStudyContent = {
   nextProject: string;
   opensInNewTab: string;
 };
+
+export type AboutStat = {
+  value: number;
+  suffix?: string;
+  label: string;
+};
+
+export type AboutPrinciple = {
+  title: string;
+  body: string;
+};
+
+export type AboutInterest = {
+  id: string;
+  label: string;
+  fact: string;
+};
+
+export type AboutContent = {
+  label: string;
+  heading: string;
+  intro: string;
+  photoAlt: string;
+  photoCaption: string;
+  bio: string[];
+  stats: AboutStat[];
+  principlesHeading: string;
+  principles: AboutPrinciple[];
+  interestsHeading: string;
+  interestsHintPointer: string;
+  interestsHintTouch: string;
+  interests: AboutInterest[];
+};
