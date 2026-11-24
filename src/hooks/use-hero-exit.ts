@@ -10,12 +10,21 @@ export function useHeroExit(root: RefObject<HTMLElement | null>): void {
   useGSAP(
     () => {
       const stage = root.current;
-      if (!stage) return;
+      const hero = stage?.closest(".sections-hero");
+      if (!stage || !hero) return;
 
       const mm = gsap.matchMedia();
 
       mm.add(fullMotionQuery, () => {
-        // Pin once the hero's bottom is reached, so tall heroes are read in full before the next section covers them
+        // Sticky rather than a ScrollTrigger pin: iOS Safari won't paint position: fixed content behind its toolbars
+        const stickAtBottom = () =>
+          gsap.set(hero, {
+            position: "sticky",
+            top: `min(0px, calc(100svh - ${hero.getBoundingClientRect().height}px))`,
+          });
+
+        stickAtBottom();
+
         gsap
           .timeline({
             defaults: { ease: "none" },
@@ -23,9 +32,8 @@ export function useHeroExit(root: RefObject<HTMLElement | null>): void {
               trigger: stage,
               start: "bottom bottom",
               end: "bottom top",
-              pin: true,
-              pinSpacing: false,
               scrub: true,
+              onRefresh: stickAtBottom,
             },
           })
           .to(".sections-hero__details", { y: -64, autoAlpha: 0, duration: 0.5 }, 0)
