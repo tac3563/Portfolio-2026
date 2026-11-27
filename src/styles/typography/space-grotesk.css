@@ -85,3 +85,12 @@
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
+
+/*
+ * Space Grotesk's glyphs carry ~0.03–0.09em of left side bearing, which at
+ * heading sizes pushes the first letter visibly off the text edge below.
+ * Pulls the line back by the bearing; override --optical-trim per element.
+ */
+@utility optical-trim {
+  margin-inline-start: calc(var(--optical-trim, 0.07em) * -1);
+}

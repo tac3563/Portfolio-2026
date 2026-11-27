@@ -13,7 +13,7 @@ export function Services() {
       <ServicesStage>
         <div className="grid gap-8 md:grid-cols-12 md:items-end">
           <div className="flex flex-col gap-6 md:col-span-6 lg:col-span-7">
-            <p className="copy-label text-taupe-300">{services.label}</p>
+            <p className="copy-label text-ember-500">{services.label}</p>
             <ServicesHeading />
           </div>
           <p className="max-w-intro copy-md text-pretty text-taupe-300 md:col-span-6 lg:col-span-5 lg:col-start-8">

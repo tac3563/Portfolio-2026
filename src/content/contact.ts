@@ -2,15 +2,15 @@ import type { ContactContent } from "@/types/content";
 
 export const contact: ContactContent = {
   label: "Contact",
-  heading: "Let's make it happen",
+  heading: "Get in touch",
   intro:
-    "Got a project, a role or just an idea you want to talk through? Fill in the blanks and I'll get back to you.",
+    "Got a project, a job or an idea you want to talk through? Fill in the blanks and I'll get back to you.",
   detailsLabel: "Contact details",
   statusLabel: "Status",
   status: "Open to permanent remote roles and freelance projects",
-  basedLabel: "Based",
+  basedLabel: "Location",
   based: "Nottingham, UK",
-  elsewhereLabel: "Elsewhere",
+  elsewhereLabel: "Socials",
   opensInNewTab: "(opens in a new tab)",
   cvLabel: "CV",
   cvLink: "Download CV",

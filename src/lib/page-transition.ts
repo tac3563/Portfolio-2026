@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import { matchesMedia, reducedMotionQuery } from "@/lib/media";
 import { jumpToFragment } from "@/lib/scroll-to-fragment";
+import { jumpToTop } from "@/lib/smooth-scroll";
 
 let overlay: HTMLElement | null = null;
 let isCovering = false;
@@ -51,6 +52,8 @@ export function revealPage(): void {
   transition?.kill();
   // Next.js lands fragments short by scroll-padding-top, so match the in-page anchor links instead
   if (window.location.hash) jumpToFragment(window.location.hash);
+  // Next.js's own scroll to top can be undone by Lenis momentum, or skipped when it thinks the page is in view
+  else jumpToTop();
 
   const labelElement = findLabel(element);
 

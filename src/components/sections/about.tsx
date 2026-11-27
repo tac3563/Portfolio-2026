@@ -1,14 +1,7 @@
 import { about } from "@/content/about";
-import { site } from "@/config/site";
-import { RollLink } from "@/components/layout/roll-link";
-import { AboutBoard } from "@/components/sections/about-board";
 import { AboutHeading } from "@/components/sections/about-heading";
 import { AboutPhoto } from "@/components/sections/about-photo";
 import { AboutStats } from "@/components/sections/about-stats";
-
-function formatPrincipleNumber(index: number): string {
-  return String(index + 1).padStart(2, "0");
-}
 
 export function About() {
   return (
@@ -17,55 +10,27 @@ export function About() {
       aria-labelledby="about-heading"
       className="sections-about relative z-10 overflow-x-clip bg-ink-900 text-paper-100"
     >
-      <div className="flex container-page flex-col gap-20 pt-24 pb-24 md:gap-28 md:pt-32 md:pb-40">
+      <div className="flex container-page flex-col gap-16 pt-24 pb-24 md:gap-24 md:pt-32 md:pb-40">
         <AboutHeading />
 
-        <div className="grid gap-16 md:grid-cols-12 md:gap-x-8 lg:gap-x-12">
-          <div className="mx-auto w-full max-w-xs md:col-span-5 md:mx-0 md:max-w-sm lg:col-span-4">
+        <AboutStats />
+
+        {/*
+          Mirrors the heading's 12-column grid: copy on the left under the title, photo centred on
+          the right under the intro. The photo stays first in the DOM so it sits above the copy on mobile.
+        */}
+        <div className="grid gap-12 md:grid-cols-12 md:items-center md:gap-x-8">
+          <div className="mx-auto w-full max-w-60 md:col-span-5 md:col-start-8 md:row-start-1 md:w-[min(16rem,32svh)] md:max-w-none lg:col-span-6 lg:col-start-7 lg:w-[min(22rem,38svh)]">
             <AboutPhoto />
           </div>
-          <div className="flex flex-col gap-16 md:col-span-7 lg:col-span-7 lg:col-start-6">
-            <div className="flex flex-col gap-6">
-              {about.bio.map((paragraph) => (
-                <p key={paragraph} className="max-w-summary copy-lg text-pretty">
-                  {paragraph}
-                </p>
-              ))}
-              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <p className="copy-lg text-taupe-300">{about.cvPrompt}</p>
-                <RollLink
-                  href={site.cvHref}
-                  label={about.cvLink}
-                  download
-                  className="w-fit heading-3xs text-ember-500 hover:text-paper-100 focus-visible:text-paper-100"
-                >
-                  <span className="sr-only"> {about.cvFileType}</span>
-                </RollLink>
-              </div>
-            </div>
-            <AboutStats />
+          <div className="flex flex-col gap-5 md:col-span-7 md:col-start-1 md:row-start-1 lg:col-span-6">
+            {about.bio.map((paragraph) => (
+              <p key={paragraph} className="max-w-[28em] copy-lg text-pretty">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </div>
-
-        <div className="flex flex-col gap-10">
-          <h3 className="heading-sm">{about.principlesHeading}</h3>
-          <ol className="grid gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-4">
-            {about.principles.map((principle, index) => (
-              <li
-                key={principle.title}
-                className="flex flex-col gap-4 border-t border-ink-800 pt-6"
-              >
-                <p aria-hidden="true" className="copy-meta text-ember-500">
-                  {formatPrincipleNumber(index)}
-                </p>
-                <h4 className="heading-2xs text-balance">{principle.title}</h4>
-                <p className="copy-md text-pretty text-taupe-300">{principle.body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <AboutBoard />
       </div>
     </section>
   );

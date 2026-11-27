@@ -20,7 +20,8 @@ function moveFocusTo(target: HTMLElement): void {
 function findScrollPosition(href: string, target: HTMLElement): number {
   if (href === "#top") return 0;
 
-  return target.getBoundingClientRect().top + window.scrollY;
+  const offset = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+  return target.getBoundingClientRect().top + window.scrollY - offset;
 }
 
 export function jumpToFragment(href: string): void {

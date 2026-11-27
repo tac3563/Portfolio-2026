@@ -67,13 +67,13 @@ export function ServicesList() {
               {formatServiceNumber(index)}
             </p>
             <div className="flex flex-col gap-6 md:col-span-6">
-              <h3 className="max-w-title heading-lg text-balance">{service.title}</h3>
+              <h3 className="optical-trim max-w-title heading-lg text-balance">{service.title}</h3>
               <p className="max-w-summary copy-lg text-pretty text-taupe-300">{service.summary}</p>
               <ul className="flex flex-wrap gap-2">
                 {service.stack.map((tool) => (
                   <li
                     key={tool}
-                    className="rounded-full border border-ink-800 px-3.5 py-1.5 copy-meta text-paper-200"
+                    className="rounded-full border border-ember-500/40 px-3.5 py-1.5 copy-meta text-ember-500"
                   >
                     {tool}
                   </li>

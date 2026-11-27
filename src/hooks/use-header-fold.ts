@@ -6,8 +6,11 @@ import { fullMotionQuery, reducedMotionQuery, tabletUpQuery } from "@/lib/media"
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const foldStart = 10;
+// Far enough down that scrolling back up unfolds the links before smooth scroll finishes coasting to the top
+const foldStart = 80;
 const foldDuration = 0.7;
+// Unfolding is quicker, so the links are ready by the time someone reaches the top to click them
+const unfoldDuration = 0.35;
 const reducedFoldDuration = 0.2;
 
 export type HeaderFold = {
@@ -44,14 +47,7 @@ export function useHeaderFold(root: RefObject<HTMLElement | null>): HeaderFold {
             reduceMotion: boolean;
           };
 
-          fold.current = gsap
-            .timeline({ paused: true, defaults: { ease: "none" } })
-            .fromTo(
-              ".layout-header__role",
-              { yPercent: 0, autoAlpha: 1 },
-              { yPercent: reduceMotion ? 0 : -100, autoAlpha: 0 },
-              0,
-            );
+          fold.current = gsap.timeline({ paused: true, defaults: { ease: "none" } });
 
           // Mobile always shows the menu button, so the links only fold away from tablet up
           if (tabletUp) {
@@ -81,7 +77,10 @@ export function useHeaderFold(root: RefObject<HTMLElement | null>): HeaderFold {
           foldTrigger.current = ScrollTrigger.create({
             start: foldStart,
             end: "max",
-            onToggle: () => syncFold(reduceMotion ? reducedFoldDuration : foldDuration),
+            onToggle: ({ progress }) => {
+              const duration = progress > 0 ? foldDuration : unfoldDuration;
+              syncFold(reduceMotion ? reducedFoldDuration : duration);
+            },
             onRefresh: () => {
               fold.current?.invalidate();
               syncFold(0);

@@ -52,10 +52,13 @@ export function ProjectsHeading() {
   return (
     <div ref={root} className="sections-projects-heading grid gap-8 md:grid-cols-12 md:items-end">
       <div className="flex flex-col gap-6 md:col-span-6 lg:col-span-7">
-        <p className="sections-projects-heading__reveal copy-label text-taupe-500">
+        <p className="sections-projects-heading__reveal copy-label text-ember-600">
           {projects.label}
         </p>
-        <h2 id="projects-heading" className="flex flex-wrap gap-x-3 heading-2xl uppercase">
+        <h2
+          id="projects-heading"
+          className="optical-trim flex flex-wrap gap-x-3 heading-2xl uppercase"
+        >
           <span className="sr-only">{projects.heading}</span>
           {words.map((word) => (
             <span key={word} aria-hidden="true" className="flex overflow-y-clip">

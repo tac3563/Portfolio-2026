@@ -41,7 +41,7 @@ export function CaseStudyVisitLink({ link }: CaseStudyVisitLinkProps) {
       onPointerLeave={() => turnArrow(0)}
       onFocus={() => turnArrow(45)}
       onBlur={() => turnArrow(0)}
-      className="case-study-visit-link group flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2.5 copy-label text-paper-100 hover:bg-ember-600 focus-visible:bg-ember-600"
+      className="case-study-visit-link inline-flex items-center gap-2.5 rounded-full bg-ink-900 py-3.5 pr-5 pl-6 heading-3xs text-paper-100 uppercase hover:bg-ember-600 focus-visible:bg-ember-600"
     >
       {link.label}
       <svg
@@ -51,7 +51,7 @@ export function CaseStudyVisitLink({ link }: CaseStudyVisitLinkProps) {
         fill="none"
         stroke="currentColor"
         strokeWidth={1.5}
-        className="size-4 shrink-0 text-ember-500 group-hover:text-paper-100 group-focus-visible:text-paper-100"
+        className="size-4"
       >
         <path d="M4 12L12 4M6 4h6v6" />
       </svg>
