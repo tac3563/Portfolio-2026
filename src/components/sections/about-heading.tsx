@@ -52,8 +52,11 @@ export function AboutHeading() {
   return (
     <div ref={root} className="sections-about-heading grid gap-8 md:grid-cols-12 md:items-end">
       <div className="flex flex-col gap-6 md:col-span-6 lg:col-span-7">
-        <p className="sections-about-heading__reveal copy-label text-taupe-300">{about.label}</p>
-        <h2 id="about-heading" className="flex flex-wrap gap-x-3 heading-2xl uppercase md:gap-x-5">
+        <p className="sections-about-heading__reveal copy-label text-ember-500">{about.label}</p>
+        <h2
+          id="about-heading"
+          className="optical-trim flex flex-wrap gap-x-3 heading-2xl uppercase md:gap-x-5"
+        >
           <span className="sr-only">{about.heading}</span>
           {words.map((word) => (
             <span key={word} aria-hidden="true" className="flex overflow-y-clip">

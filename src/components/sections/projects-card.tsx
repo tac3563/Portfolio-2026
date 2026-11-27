@@ -67,7 +67,12 @@ export function ProjectsCard({ project, number }: ProjectsCardProps) {
       <div className="flex flex-col justify-between gap-8 p-3 md:col-span-5 md:p-4">
         <div className="flex flex-col gap-4">
           <p className="sections-projects-card__reveal flex justify-between copy-meta text-taupe-500">
-            <span aria-hidden="true">{number}</span>
+            <span
+              aria-hidden="true"
+              className="transition-colors duration-300 group-data-active/project:text-ember-600"
+            >
+              {number}
+            </span>
             <span>{project.year}</span>
           </p>
           <h3
@@ -97,7 +102,7 @@ export function ProjectsCard({ project, number }: ProjectsCardProps) {
               href={`/projects/${project.slug}`}
               label={project.title}
               ariaLabel={`${projects.viewCaseStudy}: ${project.title}`}
-              className="sections-projects-card__cta flex items-center gap-2 copy-label text-ink-900 after:absolute after:inset-0 after:z-10 after:rounded-3xl"
+              className="sections-projects-card__cta inline-flex items-center gap-2.5 rounded-full bg-ink-900 py-3.5 pr-5 pl-6 heading-3xs text-paper-100 uppercase after:absolute after:inset-0 after:z-10 after:rounded-3xl hover:bg-ember-600 focus-visible:bg-ember-600"
             >
               <span className="block overflow-hidden">
                 <span className="sections-projects-card__label block text-roll">
@@ -110,7 +115,7 @@ export function ProjectsCard({ project, number }: ProjectsCardProps) {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth={1.5}
-                className="size-4 text-ember-600"
+                className="size-4"
               >
                 <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" />
               </svg>

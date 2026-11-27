@@ -23,8 +23,8 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
       <div className="flex container-page flex-col gap-12 pt-16 pb-16 md:gap-16 md:pt-24 md:pb-24">
         <div className="grid gap-8 md:grid-cols-12 md:items-end">
           <div className="flex flex-col gap-6 md:col-span-8">
-            <p className="copy-label text-taupe-500">{project.tags.join(" · ")}</p>
-            <h1 id="case-study-heading" className="heading-2xl text-balance uppercase">
+            <p className="copy-label text-ember-600">{project.tags.join(" · ")}</p>
+            <h1 id="case-study-heading" className="optical-trim heading-2xl text-balance uppercase">
               {project.title}
             </h1>
             <p className="max-w-summary copy-lg text-pretty text-taupe-500">{project.summary}</p>

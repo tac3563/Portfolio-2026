@@ -11,7 +11,7 @@ export function Hero() {
       <HeroStage>
         <h1
           id="hero-heading"
-          className="sections-hero__name flex justify-between heading-display uppercase"
+          className="sections-hero__name optical-trim flex justify-between heading-display uppercase [--optical-trim:0.028em]"
         >
           <span className="sr-only">{hero.name}</span>
           {words.map((word) => (
@@ -26,20 +26,10 @@ export function Hero() {
         </h1>
         <div className="sections-hero__details grid gap-12 md:grid-cols-12 md:items-end">
           <div className="flex flex-col items-start gap-6 md:col-span-7 lg:col-span-6 xl:col-span-5">
-            <p className="sections-hero__reveal invisible flex items-center gap-3 copy-label text-muted">
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1.25}
-                className="size-4"
-              >
-                <path d="M3 3l10 10M13 5v8H5" />
-              </svg>
-              {hero.location}
-            </p>
             <p className="sections-hero__intro translate-y-6 copy-lg text-pretty text-muted lg:max-w-intro">
+              <strong className="font-space-grotesk font-medium tracking-tight text-foreground">
+                {hero.introLead}
+              </strong>{" "}
               {hero.intro}
             </p>
             <div className="sections-hero__reveal invisible">

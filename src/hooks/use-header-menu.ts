@@ -64,7 +64,10 @@ export function useHeaderMenu(
             { width: toggleWidth, duration: isMobile ? 0 : duration, ease: "power2.inOut" },
             0,
           )
-          .set(".layout-header__backdrop", { autoAlpha: 0 });
+          .set(".layout-header__backdrop", { autoAlpha: 0 })
+          // The pill takes over the button's border and background and stays unblended until it has fully shrunk back
+          .set(".layout-header-toggle", { clearProps: "borderColor,backgroundColor" })
+          .set(".layout-header__bar", { clearProps: "mixBlendMode" });
         return;
       }
 
@@ -89,6 +92,12 @@ export function useHeaderMenu(
           );
         return;
       }
+
+      gsap.set(".layout-header-toggle", {
+        borderColor: "transparent",
+        backgroundColor: "transparent",
+      });
+      gsap.set(".layout-header__bar", { mixBlendMode: "normal" });
 
       const list = root.current?.querySelector<HTMLElement>(".layout-header__links");
       const shift = -(toggleWidth + linkGap);

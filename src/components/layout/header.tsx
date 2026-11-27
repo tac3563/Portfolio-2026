@@ -9,11 +9,10 @@ import { useHeaderMenu } from "@/hooks/use-header-menu";
 import type { Link } from "@/types/site";
 
 type HeaderProps = {
-  role: string;
   nav: Link[];
 };
 
-export function Header({ role, nav }: HeaderProps) {
+export function Header({ nav }: HeaderProps) {
   const root = useRef<HTMLElement>(null);
   const fold = useHeaderFold(root);
   const menu = useHeaderMenu(root, fold);
@@ -27,10 +26,7 @@ export function Header({ role, nav }: HeaderProps) {
       className="layout-header group/header"
     >
       <nav aria-label={header.navLabel}>
-        <div className="fixed inset-x-0 top-0 z-40 flex container-page items-start justify-between gap-4 pt-3.75 text-paper-100 mix-blend-difference group-data-expanded/header:mix-blend-normal">
-          <p className="layout-header__role border-y border-transparent py-3 heading-3xs md:py-2">
-            {role}
-          </p>
+        <div className="layout-header__bar fixed inset-x-0 top-0 z-40 flex container-page items-start justify-end gap-4 pt-3.75 text-paper-100 mix-blend-difference group-data-expanded/header:mix-blend-normal">
           <div className="relative">
             <span
               aria-hidden="true"

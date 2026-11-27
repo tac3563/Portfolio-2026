@@ -2,8 +2,8 @@ import type { Link } from "@/types/site";
 
 export type HeroContent = {
   name: string;
+  introLead: string;
   intro: string;
-  location: string;
   availability: string;
   localTime: string;
   timeZone: string;
@@ -123,17 +123,6 @@ export type AboutStat = {
   label: string;
 };
 
-export type AboutPrinciple = {
-  title: string;
-  body: string;
-};
-
-export type AboutInterest = {
-  id: string;
-  label: string;
-  fact: string;
-};
-
 export type AboutContent = {
   label: string;
   heading: string;
@@ -142,15 +131,6 @@ export type AboutContent = {
   photoCaption: string;
   bio: string[];
   stats: AboutStat[];
-  principlesHeading: string;
-  principles: AboutPrinciple[];
-  interestsHeading: string;
-  interestsHintPointer: string;
-  interestsHintTouch: string;
-  interests: AboutInterest[];
-  cvPrompt: string;
-  cvLink: string;
-  cvFileType: string;
 };
 
 export type ContactTopic = {

@@ -43,12 +43,12 @@ export function HeroStatus() {
     <div ref={root} className="sections-hero-status flex flex-col gap-4 md:items-end md:text-right">
       <p className="flex items-center gap-3 copy-label text-muted">
         <span aria-hidden="true" className="relative flex size-2">
-          <span className="sections-hero-status__pulse absolute inset-0 rounded-full bg-ember-500" />
-          <span className="relative size-2 rounded-full bg-ember-600" />
+          <span className="sections-hero-status__pulse absolute inset-0 rounded-full bg-green-500" />
+          <span className="relative size-2 rounded-full bg-green-600" />
         </span>
         {hero.availability}
       </p>
-      <p className="flex items-start heading-xl">
+      <p className="optical-trim flex items-start heading-xl [--optical-trim:0.05em]">
         {time?.hours ?? emptyDigits}
         <span className="sections-hero-status__colon">:</span>
         {time?.minutes ?? emptyDigits}

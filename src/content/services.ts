@@ -4,13 +4,13 @@ export const services: ServicesContent = {
   label: "Services",
   heading: "What I do",
   intro:
-    "Five years in PHP agencies taught me to ship: pixel-perfect builds, CMS sites editors enjoy and fast full-stack products.",
+    "Five years building Laravel web apps, WordPress and Statamic sites, and fast React and Next.js frontends.",
   services: [
     {
       id: "full-stack",
       title: "Full-stack products",
       summary:
-        "End-to-end web apps with Laravel and TypeScript. Data modelled in PostgreSQL, clean APIs, queues and auth, and a frontend people enjoy using.",
+        "Web apps built with Laravel and TypeScript, from the database up. PostgreSQL, APIs, queues and auth, plus a frontend that's nice to use.",
       stack: ["Laravel", "PHP 8", "PostgreSQL", "TypeScript", "REST APIs", "Queues"],
       file: "app/Actions/PublishProject.php",
       language: "PHP",
@@ -35,7 +35,7 @@ export const services: ServicesContent = {
       id: "interfaces",
       title: "Interfaces from design",
       summary:
-        "Pixel-perfect, responsive builds from Figma in React, Vue or Next.js. Component systems that match the design file and hold up at every breakpoint.",
+        "Figma designs built in React, Vue or Next.js, as components that match the design and look right at every screen size.",
       stack: ["Vue", "React", "Next.js", "TypeScript", "Tailwind CSS", "Figma"],
       file: "components/project-card.tsx",
       language: "TypeScript JSX",
@@ -60,7 +60,7 @@ export const services: ServicesContent = {
       id: "cms",
       title: "WordPress & Statamic",
       summary:
-        "Custom WordPress themes built with Laravel-style structure and ACF, and Statamic sites built on Laravel itself. Editors get flexible, hard-to-break page building; developers get typed, tidy code.",
+        "Custom WordPress themes with ACF, and Statamic sites on Laravel. Editors can build pages without breaking anything, and the code stays tidy for whoever works on it next.",
       stack: ["WordPress", "ACF", "Statamic", "Laravel"],
       file: "components/home/hero.php",
       language: "PHP",
@@ -84,7 +84,7 @@ export const services: ServicesContent = {
       id: "craft",
       title: "Motion, access & speed",
       summary:
-        "GSAP animation that respects reduced-motion settings, accessible markup built to WCAG, and performance work that keeps Core Web Vitals green.",
+        "GSAP animation that calms down for people who prefer reduced motion, markup built to WCAG, and pages that pass Core Web Vitals.",
       stack: ["GSAP", "ScrollTrigger", "WCAG 2.2", "Core Web Vitals", "Lighthouse"],
       file: "hooks/use-reveal.ts",
       language: "TypeScript",

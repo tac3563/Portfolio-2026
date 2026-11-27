@@ -47,7 +47,7 @@ export function HeaderToggle({ isExpanded, onToggle }: HeaderToggleProps) {
         aria-expanded={isExpanded}
         aria-controls="layout-header-links"
         onClick={onToggle}
-        className="layout-header-toggle pointer-events-auto flex items-center justify-center gap-3 rounded-full border border-paper-100/20 bg-ink-900 whitespace-nowrap text-paper-100 aria-expanded:border-transparent max-md:size-11 md:invisible md:py-2 md:pr-4 md:pl-5"
+        className="layout-header-toggle pointer-events-auto flex items-center justify-center gap-3 rounded-full border border-paper-100/20 bg-ink-900 whitespace-nowrap text-paper-100 max-md:size-11 md:invisible md:py-2 md:pr-4 md:pl-5"
       >
         <span className="heading-3xs max-md:hidden">{header.menu}</span>
         <span aria-hidden="true" className="flex w-4 flex-col gap-1">

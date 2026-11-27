@@ -52,11 +52,14 @@ export function AboutStats() {
   );
 
   return (
-    <dl ref={root} className="sections-about-stats grid grid-cols-2 gap-x-6 gap-y-10">
+    <dl ref={root} className="sections-about-stats grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
       {about.stats.map((stat) => (
-        <div key={stat.label} className="flex flex-col-reverse gap-2 border-t border-ink-800 pt-4">
+        <div
+          key={stat.label}
+          className="flex flex-col-reverse justify-end gap-2 border-t border-ink-800 pt-4"
+        >
           <dt className="copy-meta text-pretty text-taupe-300">{stat.label}</dt>
-          <dd className="sections-about-stats__value heading-xl text-ember-500 tabular-nums">
+          <dd className="sections-about-stats__value heading-lg text-ember-500 tabular-nums">
             {formatStat(stat)}
           </dd>
         </div>

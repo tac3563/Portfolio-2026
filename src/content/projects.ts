@@ -4,7 +4,7 @@ export const projects: ProjectsContent = {
   label: "Selected work",
   heading: "Projects",
   intro:
-    "Recent client sites and my own products, each with a short case study on why and how it was built.",
+    "Client sites and my own products. Each one has a short write-up on why and how I built it.",
   viewCaseStudy: "View case study",
   comingSoon: "Coming soon",
   videoLabel: "Screen recording of the site being scrolled",

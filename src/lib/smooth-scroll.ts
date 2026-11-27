@@ -35,3 +35,13 @@ export function pauseSmoothScroll(): void {
 export function resumeSmoothScroll(): void {
   lenis?.start();
 }
+
+export function jumpToTop(): void {
+  if (lenis) {
+    // Resets Lenis's target too, so leftover inertia can't drag the page back down
+    lenis.scrollTo(0, { immediate: true, force: true });
+    return;
+  }
+
+  window.scrollTo(0, 0);
+}

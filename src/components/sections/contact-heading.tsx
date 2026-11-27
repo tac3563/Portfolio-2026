@@ -52,12 +52,12 @@ export function ContactHeading() {
   return (
     <div ref={root} className="sections-contact-heading grid gap-8 md:grid-cols-12 md:items-end">
       <div className="flex flex-col gap-6 md:col-span-6 lg:col-span-7">
-        <p className="sections-contact-heading__reveal copy-label text-taupe-500">
+        <p className="sections-contact-heading__reveal copy-label text-ember-600">
           {contact.label}
         </p>
         <h2
           id="contact-heading"
-          className="flex flex-wrap gap-x-3 heading-2xl uppercase md:gap-x-5 xl:gap-x-7.5"
+          className="optical-trim flex flex-wrap gap-x-3 heading-2xl uppercase md:gap-x-5 xl:gap-x-7.5"
         >
           <span className="sr-only">{contact.heading}</span>
           {words.map((word) => (

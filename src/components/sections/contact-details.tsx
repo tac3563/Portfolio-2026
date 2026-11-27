@@ -8,7 +8,9 @@ export function ContactDetails() {
       <div className="flex flex-col gap-3 border-t border-paper-300 pt-4">
         <dt className="copy-label text-taupe-500">{contact.statusLabel}</dt>
         <dd className="flex items-start gap-3 copy-md text-pretty">
-          <span aria-hidden="true" className="mt-2.5 size-2 shrink-0 rounded-full bg-ember-600" />
+          <span aria-hidden="true" className="flex h-lh shrink-0 items-center">
+            <span className="size-2 rounded-full bg-green-600" />
+          </span>
           {contact.status}
         </dd>
       </div>

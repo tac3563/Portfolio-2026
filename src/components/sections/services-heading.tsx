@@ -39,7 +39,7 @@ export function ServicesHeading() {
     <div ref={root} className="sections-services-heading">
       <h2
         id="services-heading"
-        className="flex flex-wrap gap-x-3 heading-2xl uppercase md:gap-x-5 xl:gap-x-7.5"
+        className="optical-trim flex flex-wrap gap-x-3 heading-2xl uppercase md:gap-x-5 xl:gap-x-7.5"
       >
         <span className="sr-only">{services.heading}</span>
         {words.map((word) => (
