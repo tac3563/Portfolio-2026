@@ -78,6 +78,7 @@ type ProjectBase = {
   year: string;
   tags: string[];
   video?: ProjectVideo;
+  award?: string;
 };
 
 export type PublishedProject = ProjectBase & {
