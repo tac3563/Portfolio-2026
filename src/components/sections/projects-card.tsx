@@ -127,8 +127,15 @@ export function ProjectsCard({ project, number }: ProjectsCardProps) {
           )}
         </div>
       </div>
-      <div className="md:col-span-7">
-        <ProjectsVideo video={project.video} title={project.title} label={projects.videoLabel} />
+      {/* Clicks pass through to the stretched case study link: the dimming fade gives each
+          column its own stacking context, which would otherwise put the video above it. */}
+      <div className="pointer-events-none md:col-span-7">
+        <ProjectsVideo
+          video={project.video}
+          title={project.title}
+          label={projects.videoLabel}
+          award={project.award}
+        />
       </div>
     </article>
   );

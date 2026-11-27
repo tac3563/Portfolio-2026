@@ -23,7 +23,17 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
       <div className="flex container-page flex-col gap-12 pt-16 pb-16 md:gap-16 md:pt-24 md:pb-24">
         <div className="grid gap-8 md:grid-cols-12 md:items-end">
           <div className="flex flex-col gap-6 md:col-span-8">
-            <p className="copy-label text-ember-600">{project.tags.join(" · ")}</p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+              <p className="copy-label text-ember-600">{project.tags.join(" · ")}</p>
+              {project.award && (
+                <p className="case-study-hero__award inline-flex items-center gap-2 rounded-full border border-ember-600 py-1 pr-3 pl-2.5 copy-meta text-ember-600">
+                  <svg aria-hidden="true" viewBox="0 0 16 16" className="size-3.5 fill-current">
+                    <path d="M8 1l1.9 4.1 4.5.5-3.4 3 1 4.4L8 10.8 4 13l1-4.4-3.4-3 4.5-.5z" />
+                  </svg>
+                  {project.award}
+                </p>
+              )}
+            </div>
             <h1 id="case-study-heading" className="optical-trim heading-2xl text-balance uppercase">
               {project.title}
             </h1>
@@ -52,7 +62,12 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
             )}
           </div>
         </div>
-        <ProjectsVideo video={project.video} title={project.title} label={projects.videoLabel} />
+        <ProjectsVideo
+          video={project.video}
+          title={project.title}
+          label={projects.videoLabel}
+          award={project.award}
+        />
       </div>
     </section>
   );
